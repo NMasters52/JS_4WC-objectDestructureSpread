@@ -10,15 +10,18 @@ const intBag = {
     putter: 'aviar'
 };
 
+function objValidation(obj) {
+   return typeof obj == 'object' && !Array.isArray(obj);
+}
+
 function upgradingBag(base, upgrade) {
 
-    if (typeof base !== 'object' && typeof upgrade !== 'object' && !Array.isArray(upgrade && base)) {
-        return "please pass a valid object as an argument"
+    if (!objValidation(base) || !objValidation(upgrade)) {
+        return "invalid object passed as an argument";
     }
-        
-        const newBag = {...base, ...upgrade};
-        return newBag;
+    const newBag = {...base, ...upgrade};
+    return newBag;
    
 };
 
-console.log(upgradingBag(baseBag, intBag));
+console.log(upgradingBag(baseBag, 1));
